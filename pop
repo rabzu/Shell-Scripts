@@ -1,0 +1,28 @@
+FILE=$(ls -t ~/Downloads/ | head -n 1)
+TO=~/Desktop/
+while getopts d:x arg; 
+do
+	case $arg in
+		d) TO=$OPTARG;;	
+		x) X=1;;
+		?)echo "Usage: $0 [-x] [-d <string>]"
+			exit 1
+	esac	
+done
+
+
+
+
+if [[ "$TO" != ~/Desktop/ ]]
+then
+	[[ ! -d "$TO" ]] && echo No Such Directory! && exit 1
+fi
+
+cd "$TO"
+(mv -i ~/Downloads/"$FILE" "$TO" && echo $FILE is copied to $TO) || echo Error moving file
+
+if [[ $X -eq 1 ]]
+then
+	(unzip "$TO"/"$FILE" -d "$TO"$(basename -s .zip "$FILE") && rm -i "$TO"/"$FILE" && echo $FILE is extracted to $TO and Zip removed) || echo Non Extractable File!
+fi
+
