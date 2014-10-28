@@ -7,11 +7,11 @@ Moves the latest downloaded file form OSx download folder to desktop
 ```
 pop
 ```
-moves and extracts the latest downloaded file on desktop
+Moves and extracts the latest downloaded file on desktop
 ```
 pop  -x
 ```
-moves the latest downloaded file to the specified destiontion
+Moves the latest downloaded file to the specified destination
 ```
 pop -d "destination"
 ```
